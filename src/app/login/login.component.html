@@ -1,0 +1,94 @@
+ファイル：
+<input type="file" id="file">
+<hr>
+<div class="mod-preview"></div>
+
+<!-- formを作る練習 -->
+<div class="ui raised segment">
+  <h2 class="ui header">Demo Form: Sku</h2>
+  <form #f="ngForm" (ngSubmit)="onSubmit(f.value)" class="ui form">
+    <div class="field">
+      <label for="skuInput">SKU</label>
+      <input type="text" id="skuInput" placeholder="SKU" name="sku" ngModel>
+    </div>
+    <button type="submit" class="ui button">Submit</button>
+  </form>
+</div>
+
+<hr>
+
+<form>
+  <div class="koumoku">
+    <div class="title">デザイン</div>
+    <div class="radio">
+      <input type="radio" [(ngModel)]="forms.design" name="forms.design" value="1">×
+      <input type="radio" [(ngModel)]="forms.design" name="forms.design" value="2">△
+      <input type="radio" [(ngModel)]="forms.design" name="forms.design" value="3">○
+      <input type="radio" [(ngModel)]="forms.design" name="forms.design" value="4">◎
+    </div>
+  </div>
+  <div class="koumoku">
+    <div class="title">配色</div>
+    <div class="radio">
+      <input type="radio" [(ngModel)]="forms.color" name="forms.color" value="1">×
+      <input type="radio" [(ngModel)]="forms.color" name="forms.color" value="2">△
+      <input type="radio" [(ngModel)]="forms.color" name="forms.color" value="3">○
+      <input type="radio" [(ngModel)]="forms.color" name="forms.color" value="4">◎
+    </div>
+  </div>
+  <div class="koumoku">
+    <div class="title">操作性</div>
+    <div class="radio">
+      <input type="radio" [(ngModel)]="forms.operability" name="forms.operability" value="1">×
+      <input type="radio" [(ngModel)]="forms.operability" name="forms.operability" value="2">△
+      <input type="radio" [(ngModel)]="forms.operability" name="forms.operability" value="3">○
+      <input type="radio" [(ngModel)]="forms.operability" name="forms.operability" value="4">◎
+    </div>
+  </div>
+  <div class="koumoku">
+    <div class="title">好み</div>
+    <div class="radio">
+      <input type="radio" [(ngModel)]="forms.preference" name="forms.preference" value="1">×
+      <input type="radio" [(ngModel)]="forms.preference" name="forms.preference" value="2">△
+      <input type="radio" [(ngModel)]="forms.preference" name="forms.preference" value="3">○
+      <input type="radio" [(ngModel)]="forms.preference" name="forms.preference" value="4">◎
+    </div>
+  </div>
+  <button (click)="saveStorage()">ストレージに値を保存</button>
+  <button (click)="resetForm()">入力をクリア</button>
+  <button (click)="getStorage()">ストレージの値を反映</button>
+</form>
+
+<hr>
+
+<button (click)="displayData()">データ取得（直打ち）</button>
+<button (click)="displayDataUseService()">データ取得（サービス使用）</button>
+<div *ngIf="status">
+  <strong>レスポンスデータ</strong>
+  <br />
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>パス</th>
+        <th>項目1</th>
+        <th>項目2</th>
+        <th>項目3</th>
+        <th>項目4</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of evaluations">
+        <td>{{item.id}}</td>
+        <td>{{item.path}}</td>
+        <td>{{item.design}}</td>
+        <td>{{item.color}}</td>
+        <td>{{item.operability}}</td>
+        <td>{{item.preference}}</td>
+      </tr>
+    </tbody>
+  </table>
+  ステータス：{{status}}
+  <br /> エラー：{{error}}
+  <br />
+</div>
