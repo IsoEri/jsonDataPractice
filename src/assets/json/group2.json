@@ -1,0 +1,46 @@
+[
+   {
+      "id": 0,
+      "path": "/assets/image/group2/hito1_enjin_australopithecus.png",
+      "design": "2",
+      "color": "4",
+      "operability": "2",
+      "preference": "3"
+    },
+ 
+   {
+      "id": 1,
+      "path": "/assets/image/group2/hito2_genjin_java_pekin.png",
+      "design": "2",
+      "color": "4",
+      "operability": "2",
+      "preference": "3"
+    },
+ 
+   {
+      "id": 2,
+      "path": "/assets/image/group2/hito3_kyuujinrui_neanderthal.png",
+      "design": "2",
+      "color": "4",
+      "operability": "2",
+      "preference": "3"
+    },
+ 
+   {
+      "id": 3,
+      "path": "/assets/image/group2/hito4_shinjinrui_cro-magnon.png",
+      "design": "2",
+      "color": "4",
+      "operability": "2",
+      "preference": "3"
+    },
+ 
+   {
+      "id": 4,
+      "path": "/assets/image/group2/hito5_gendaijin_homo_sapiens.png",
+      "design": "2",
+      "color": "4",
+      "operability": "2",
+      "preference": "3"
+    }
+]

@@ -1,0 +1,91 @@
+[
+   {
+      "id": 0,
+      "path": "/assets/image/group3/tree_seichou01.png",
+      "design": "2",
+      "color": "4",
+      "operability": "2",
+      "preference": "3"
+    },
+ 
+   {
+      "id": 1,
+      "path": "/assets/image/group3/tree_seichou02.png",
+      "design": "2",
+      "color": "4",
+      "operability": "2",
+      "preference": "3"
+    },
+ 
+   {
+      "id": 2,
+      "path": "/assets/image/group3/tree_seichou03.png",
+      "design": "2",
+      "color": "4",
+      "operability": "2",
+      "preference": "3"
+    },
+ 
+   {
+      "id": 3,
+      "path": "/assets/image/group3/tree_seichou04.png",
+      "design": "2",
+      "color": "4",
+      "operability": "2",
+      "preference": "3"
+    },
+ 
+   {
+      "id": 4,
+      "path": "/assets/image/group3/tree_seichou05.png",
+      "design": "2",
+      "color": "4",
+      "operability": "2",
+      "preference": "3"
+    },
+ 
+   {
+      "id": 5,
+      "path": "/assets/image/group3/tree_seichou06.png",
+      "design": "2",
+      "color": "4",
+      "operability": "2",
+      "preference": "3"
+    },
+ 
+   {
+      "id": 6,
+      "path": "/assets/image/group3/tree_seichou07.png",
+      "design": "2",
+      "color": "4",
+      "operability": "2",
+      "preference": "3"
+    },
+ 
+   {
+      "id": 7,
+      "path": "/assets/image/group3/tree_seichou08.png",
+      "design": "2",
+      "color": "4",
+      "operability": "2",
+      "preference": "3"
+    },
+ 
+   {
+      "id": 8,
+      "path": "/assets/image/group3/tree_seichou09.png",
+      "design": "2",
+      "color": "4",
+      "operability": "2",
+      "preference": "3"
+    },
+ 
+   {
+      "id": 9,
+      "path": "/assets/image/group3/tree_seichou10.png",
+      "design": "2",
+      "color": "4",
+      "operability": "2",
+      "preference": "3"
+    }
+]

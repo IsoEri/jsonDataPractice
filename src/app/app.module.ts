@@ -9,8 +9,10 @@ import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { Location, HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { TestPageComponent } from './test-page/test-page.component';
 import { LoginComponent } from './login/login.component';
-import { LoginService } from './login/login.service';
+import { EvaluationComponent } from './evaluation/evaluation.component';
+import { TopPageComponent } from './top-page/top-page.component';
 
 // create service
 @NgModule({
@@ -27,11 +29,13 @@ import { LoginService } from './login/login.service';
   ],
   declarations: [
     AppComponent,
-    LoginComponent
+    TestPageComponent,
+    LoginComponent,
+    EvaluationComponent,
+    TopPageComponent
   ],
   providers: [
     Location,
-    LoginService,
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy

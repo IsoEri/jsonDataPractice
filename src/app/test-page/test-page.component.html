@@ -1,0 +1,99 @@
+<!-- ファイル：
+<input type="file" id="file">
+<hr>
+<div class="mod-preview"></div> -->
+<form>
+
+  <!-- <div class="koumoku" *ngFor="let koumoku of koumokus">
+    <div class="title">{{koumoku.name}}</div>
+    <div class="radio">
+      <input type="radio" *ngFor="let hyoka of hyokas" [(ngModel)]="forms.{{koumoku.idname}}" name="forms.{{koumoku.idname}}" value={{hyoka.value}} >{{hyoka.name}}
+    </div>
+  </div> -->
+
+  <div class="koumoku">
+    <div class="title">デザイン（design）</div>
+    <div class="radio">
+      <input type="radio" [(ngModel)]="forms.design" name="forms.design" value="1" accesskey="1">×(1)
+      <input type="radio" [(ngModel)]="forms.design" name="forms.design" value="2" accesskey="2">△(2)
+      <input type="radio" [(ngModel)]="forms.design" name="forms.design" value="3" accesskey="3">○(3)
+      <input type="radio" [(ngModel)]="forms.design" name="forms.design" value="4" accesskey="4">◎(4)
+    </div>
+  </div>
+  <div class="koumoku">
+    <div class="title">配色（color）</div>
+    <div class="radio">
+      <input type="radio" [(ngModel)]="forms.color" name="forms.color" value="1" accesskey="q">×(q)
+      <input type="radio" [(ngModel)]="forms.color" name="forms.color" value="2" accesskey="w">△(w)
+      <input type="radio" [(ngModel)]="forms.color" name="forms.color" value="3" accesskey="e">○(e)
+      <input type="radio" [(ngModel)]="forms.color" name="forms.color" value="4" accesskey="r">◎(r)
+    </div>
+  </div>
+  <div class="koumoku">
+    <div class="title">操作性（operability）</div>
+    <div class="radio">
+      <input type="radio" [(ngModel)]="forms.operability" name="forms.operability" value="1" accesskey="a">×(a)
+      <input type="radio" [(ngModel)]="forms.operability" name="forms.operability" value="2" accesskey="s">△(s)
+      <input type="radio" [(ngModel)]="forms.operability" name="forms.operability" value="3" accesskey="d">○(d)
+      <input type="radio" [(ngModel)]="forms.operability" name="forms.operability" value="4" accesskey="f">◎(f)
+    </div>
+  </div>
+  <div class="koumoku">
+    <div class="title">好み（preference）</div>
+    <div class="radio">
+      <input type="radio" [(ngModel)]="forms.preference" name="forms.preference" value="1" accesskey="z">×(z)
+      <input type="radio" [(ngModel)]="forms.preference" name="forms.preference" value="2" accesskey="x">△(x)
+      <input type="radio" [(ngModel)]="forms.preference" name="forms.preference" value="3" accesskey="c">○(c)
+      <input type="radio" [(ngModel)]="forms.preference" name="forms.preference" value="4" accesskey="v">◎(v)
+    </div>
+  </div>
+  <span class="button1">
+    <button (click)="saveStorage()">ストレージに値を保存</button>
+    <button (click)="resetForm()">入力をクリア</button>
+    <button (click)="getStorage()">ストレージの値を反映</button>
+    <br>
+    <button (click)="exportFile()">ファイル出力</button>
+    <button (click)="deleteStorage()">ストレージの値を削除</button>
+  </span>
+
+  <hr>
+
+  <select id="" [(ngModel)]="forms.selectJson" name="forms.selectJson">
+    <option *ngFor="let item of jsonFiles" [value]="item">{{item}}</option>
+  </select>
+
+  <button (click)="displayData()">データ取得</button>
+  <button (click)="displayDataShuffle()">データをランダムに取得</button>
+  <!-- <button (click)="displayDataUseService()">データ取得（サービス使用）</button> -->
+  <div *ngIf="status">
+    <strong>レスポンスデータ</strong>
+    <br />
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>パス</th>
+          <th>項目1</th>
+          <th>項目2</th>
+          <th>項目3</th>
+          <th>項目4</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of evaluations">
+          <td>{{item.id}}</td>
+          <td>{{item.path}}</td>
+          <td>{{item.design}}</td>
+          <td>{{item.color}}</td>
+          <td>{{item.operability}}</td>
+          <td>{{item.preference}}</td>
+        </tr>
+      </tbody>
+    </table>
+    ステータス：{{status}}
+    <br /> エラー：{{error}}
+    <br />
+  </div>
+
+  <img *ngFor="let item of evaluations" src={{item.path}} width="50px">
+</form>
