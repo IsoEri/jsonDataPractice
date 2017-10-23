@@ -12,48 +12,60 @@
   </div> -->
 
   <div class="koumoku">
-    <div class="title">デザイン（design）</div>
+    <div class="title">項目1</div>
     <div class="radio">
-      <input type="radio" [(ngModel)]="forms.design" name="forms.design" value="1" accesskey="1">×(1)
-      <input type="radio" [(ngModel)]="forms.design" name="forms.design" value="2" accesskey="2">△(2)
-      <input type="radio" [(ngModel)]="forms.design" name="forms.design" value="3" accesskey="3">○(3)
-      <input type="radio" [(ngModel)]="forms.design" name="forms.design" value="4" accesskey="4">◎(4)
+      <input type="radio" [(ngModel)]="forms.design" name="forms.design" value="1" accesskey="1">×
+      <input type="radio" [(ngModel)]="forms.design" name="forms.design" value="2" accesskey="2">△
+      <input type="radio" [(ngModel)]="forms.design" name="forms.design" value="3" accesskey="3">○
+      <input type="radio" [(ngModel)]="forms.design" name="forms.design" value="4" accesskey="4">◎
     </div>
   </div>
   <div class="koumoku">
-    <div class="title">配色（color）</div>
+    <div class="title">項目2</div>
     <div class="radio">
-      <input type="radio" [(ngModel)]="forms.color" name="forms.color" value="1" accesskey="q">×(q)
-      <input type="radio" [(ngModel)]="forms.color" name="forms.color" value="2" accesskey="w">△(w)
-      <input type="radio" [(ngModel)]="forms.color" name="forms.color" value="3" accesskey="e">○(e)
-      <input type="radio" [(ngModel)]="forms.color" name="forms.color" value="4" accesskey="r">◎(r)
+      <input type="radio" [(ngModel)]="forms.color" name="forms.color" value="1" accesskey="q">×
+      <input type="radio" [(ngModel)]="forms.color" name="forms.color" value="2" accesskey="w">△
+      <input type="radio" [(ngModel)]="forms.color" name="forms.color" value="3" accesskey="e">○
+      <input type="radio" [(ngModel)]="forms.color" name="forms.color" value="4" accesskey="r">◎
     </div>
   </div>
   <div class="koumoku">
-    <div class="title">操作性（operability）</div>
+    <div class="title">項目3</div>
     <div class="radio">
-      <input type="radio" [(ngModel)]="forms.operability" name="forms.operability" value="1" accesskey="a">×(a)
-      <input type="radio" [(ngModel)]="forms.operability" name="forms.operability" value="2" accesskey="s">△(s)
-      <input type="radio" [(ngModel)]="forms.operability" name="forms.operability" value="3" accesskey="d">○(d)
-      <input type="radio" [(ngModel)]="forms.operability" name="forms.operability" value="4" accesskey="f">◎(f)
+      <input type="radio" [(ngModel)]="forms.operability" name="forms.operability" value="1" accesskey="a">×
+      <input type="radio" [(ngModel)]="forms.operability" name="forms.operability" value="2" accesskey="s">△
+      <input type="radio" [(ngModel)]="forms.operability" name="forms.operability" value="3" accesskey="d">○
+      <input type="radio" [(ngModel)]="forms.operability" name="forms.operability" value="4" accesskey="f">◎
     </div>
   </div>
   <div class="koumoku">
-    <div class="title">好み（preference）</div>
+    <div class="title">項目4</div>
     <div class="radio">
-      <input type="radio" [(ngModel)]="forms.preference" name="forms.preference" value="1" accesskey="z">×(z)
-      <input type="radio" [(ngModel)]="forms.preference" name="forms.preference" value="2" accesskey="x">△(x)
-      <input type="radio" [(ngModel)]="forms.preference" name="forms.preference" value="3" accesskey="c">○(c)
-      <input type="radio" [(ngModel)]="forms.preference" name="forms.preference" value="4" accesskey="v">◎(v)
+      <input type="radio" [(ngModel)]="forms.preference" name="forms.preference" value="1" accesskey="z">×
+      <input type="radio" [(ngModel)]="forms.preference" name="forms.preference" value="2" accesskey="x">△
+      <input type="radio" [(ngModel)]="forms.preference" name="forms.preference" value="3" accesskey="c">○
+      <input type="radio" [(ngModel)]="forms.preference" name="forms.preference" value="4" accesskey="v">◎
     </div>
   </div>
-  <span class="button1">
-    <button (click)="saveStorage()">ストレージに値を保存</button>
-    <button (click)="resetForm()">入力をクリア</button>
-    <button (click)="getStorage()">ストレージの値を反映</button>
+  <button (click)="resetForm()">入力をクリア</button>
+  <button (click)="exportFile()">ファイル出力</button>
+  <br>
+  <span>
     <br>
-    <button (click)="exportFile()">ファイル出力</button>
+    <span>local storage を使用</span>
+    <br>
+    <button (click)="saveStorage()">ストレージに値を保存</button>
+    <button (click)="getStorage()">ストレージの値を反映</button>
     <button (click)="deleteStorage()">ストレージの値を削除</button>
+  </span>
+  <span>
+    <br>
+    <span>IndexedDB を使用</span>
+    <br>
+    <button (click)="indexedDbInit()">DBを作成</button>
+    <button (click)="indexedDbSave()">DBに値を保存</button>
+    <button (click)="getIndexedDb()">DBの値を反映</button>
+    <button (click)="deleteIndexedDb()">DBの値を削除</button>
   </span>
 
   <hr>

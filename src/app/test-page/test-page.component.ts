@@ -78,6 +78,11 @@ export class TestPageComponent implements OnInit {
     }
   }
 
+  // フォームをリセット
+  resetForm() {
+    this.forms = {};
+  }
+
   // localStorageにデータを保存
   saveStorage() {
     const formData = {
@@ -88,11 +93,6 @@ export class TestPageComponent implements OnInit {
     localStorage.setItem("data", JSON.stringify(formData.forms));
   }
 
-  // フォームをリセット
-  resetForm() {
-    this.forms = {};
-  }
-
   // localStorageからデータを取り出す
   getStorage() {
     const jsonItems = localStorage.getItem("data");
@@ -101,9 +101,135 @@ export class TestPageComponent implements OnInit {
     console.log("items = ", items);
   }
 
-  // local storage のデータを消す
+  // localStorageのデータを消す
   deleteStorage(){
     localStorage.clear();
+  }
+
+  // IndexedDBを作成
+  indexedDbInit() {
+    if (!window.indexedDB) {
+      window.alert("このブラウザは安定板の IndexedDB をサポートしていません。IndexedDB の機能は利用できません。");
+    } else {
+      try {
+        var datatable = document.getElementById("datatable");
+ 
+        var dbName = "Evaluations";
+        var version = 1.0;
+        var openRequest = indexedDB.open(dbName, version);
+ 
+        openRequest.onupgradeneeded = function (event: IDBVersionChangeEvent) {
+            // データベースのバージョンに変更があった場合(初めての場合もここを通ります。)
+            var old = event.oldVersion; //前のバージョン
+            var db = openRequest.result;
+            var store = db.createObjectStore("evaluation", { keyPath: "imageId", autoIncrement: true });
+          
+            // 削除も可能
+            // db.deleteObjectStore("name")
+ 
+            // あとからインデックス作成も可能 index 作成 引数：index名(識別用) 
+            //store.createIndex("indexName", "imageId" );
+        };
+ 
+        //成功時コールバック
+        openRequest.onsuccess = function (event) {
+            var db = openRequest.result;
+            console.log(openRequest.result);
+        };
+ 
+        //失敗時コールバック
+        openRequest.onerror = function (err: Event) {
+        };
+    }
+    catch (e) {
+        console.log(e);
+    }
+    }
+  }
+
+  // IndexedDBにデータを保存
+  indexedDbSave(){
+    const formData = {
+      forms: null
+    };
+    formData.forms = this.forms;
+    formData.forms.imageId = 1;
+
+    var dbName = "Evaluations";
+    var version = 1.0;
+    var openRequest = indexedDB.open(dbName, version);
+    openRequest.onsuccess = function (event: IDBVersionChangeEvent) {
+        var db: IDBDatabase = openRequest.result;
+        // トランザクション作成
+        var transaction = db.transaction("evaluation", "readwrite");
+        var objectStore = transaction.objectStore("evaluation");
+        var req = objectStore.put(formData.forms);
+        req.onsuccess = function (e) {
+            console.log("追加に成功しました", openRequest.result);
+        };
+        req.onerror = function (e) {
+            console.log("追加に失敗しました", openRequest.error);
+        };
+    }
+  }
+
+  // IndexedDBからデータを取り出す
+  getIndexedDb() {
+    var dbName = "Evaluations";
+    var version = 1.0;
+    var openRequest = indexedDB.open(dbName, version);
+    openRequest.onsuccess = function (event: IDBVersionChangeEvent) {
+        var db: IDBDatabase = openRequest.result;
+        // トランザクション作成
+        var transaction = db.transaction("evaluation", "readwrite");
+        var objectStore = transaction.objectStore("evaluation");
+        // カーソル作成
+        var req = objectStore.openCursor(null, "next");
+ 
+        req.onsuccess = function (e) {
+            //最初カーソルができたときもadvanceでカーソルが進んだときも呼ばれるイベントハンドラ
+            if (req.result == null) {
+                //IDBRequestのresultがnullのときは、もうデータがない
+                console.log("終了しました。");
+            } else {
+                //IDBRequestのresultはIDBCursorWithValueである
+                var cursor = req.result;
+                console.log(cursor.value); //そのレコードを表示
+                //次のレコードに進む
+                cursor.advance(1);
+            }
+        }
+        req.onerror = function (e) {
+            console.log("取得に失敗しました", openRequest.error);
+        };
+    }
+  }
+
+  // IndexedDBのデータを消す
+  deleteIndexedDb(){
+    var dbName = "Evaluations";
+    var version = 1.0;
+    var openRequest = indexedDB.open(dbName, version);
+    openRequest.onsuccess = function (event: IDBVersionChangeEvent) {
+      var db: IDBDatabase = openRequest.result;
+      // トランザクション作成
+      var transaction = db.transaction("evaluation", "readwrite");
+      var objectStore = transaction.objectStore("evaluation");
+      // カーソル作成
+      var req = objectStore.clear();
+    }
+
+    // indexedDBをまるっと消す方法がわからなかった
+    // var datatable = document.getElementById("datatable");
+    //        var dbName = "Evaluations";
+    //        var version = 1.0;
+    //        var openRequest = indexedDB.open(dbName, version);
+    //        openRequest.onupgradeneeded = function (event: IDBVersionChangeEvent) {
+    //            // データベースのバージョンに変更があった場合(初めての場合もここを通ります。)
+    //            var old = event.oldVersion; //前のバージョン
+    //            var db = openRequest.result;
+    //            db.deleteObjectStore(dbName)
+    //        };
   }
 
   // JSONデータを選択させる
